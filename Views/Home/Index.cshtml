@@ -2,7 +2,132 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div>*@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="content-language" content="es" />
+
+    <title>Mi sitio web</title>
+    <meta name="description" content="Mi sitio web" />
+    <meta name="keywords" content="sitio, web" />
+
+    <link rel="index" href="./" title="Inicio" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="./css/inicio.css" />
+    <script>
+        function abreBuscador() {
+            var url = "https://www.google.es/search?q=";
+            url = url + document.form.busqueda.value;
+            window.open(url, '_blank');
+        }
+
+        function cambiaBorde(elemento, llamada) {
+            if (llamada == "validacion") {
+                elemento.style.borderColor = "red";
+            }
+            else {
+                elemento.style.borderColor = "silver";
+            }
+        }
+
+        function validaFormulario() {
+            // elemento = document.datos.nombre;
+            // if (elemento.value.length == 0) {
+            // 	alert("Tienes que escribir tu nombre");
+            // 	cambiaBorde(elemento, "validacion");
+            // 	elemento.focus();
+            // 	return false;
+            // }
+            elemento = document.datos.correo;
+            if (elemento.value.length == 0) {
+                alert("Debes introducir una dirección de correo electrónico");
+                cambiaBorde(elemento, "validacion");
+                elemento.focus();
+                return false;
+            }
+            elemento = document.datos.clave;
+            if (elemento.value.length < 8) {
+                alert("La contraseña debe tener, al menos, 8 caracteres");
+                cambiaBorde(elemento, "validacion");
+                elemento.focus();
+                return false;
+            }
+            // alert(location.search);
+        }
+        function quitarbuscador() {
+            document.getElementById("buscador").style.visibility = 'hidden';
+        }
+    </script>
+
+</head>
+<body onload="quitarbuscador()">
+            <main>
+                <article>
+                    <div id="miModal" class="modal">
+                        <div class="contenido2">
+                            <span class="cerrar">&times;</span>
+                            <div id="formulario2">
+                                <form id="datos2" action="" name="datos2" method="GET">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre" onchange="cambiaBorde(this,'campo');">
+                                    <label for="correo">Correo</label>
+                                    <input type="email" id="correo2" name="correo2" onchange="cambiaBorde(this,'campo');">
+                                    <label for="clave">Contraseña</label>
+                                    <input type="password" name="clave2" id="clave2"
+                                           onchange="cambiaBorde(this,'campo');">
+                                    <div class="clear"></div>
+                                    <input type="submit" value="Darme de alta" name="envio" id="envio">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                    <!-- Inicio Sesión -->
+                    <h3>Inicio Sesión</h3>
+                    <section id="sobremi">
+                        <form id="datos" action="opiniones.html" onsubmit="return validaFormulario();" name="datos" method="GET">
+                            <fieldset>
+                                <label for="correo">Correo</label>
+                                <input type="email" id="correo" name="correo" onchange="cambiaBorde(this,'campo');">
+                                <label for="clave">Contraseña</label>
+                                <input type="password" name="clave" id="clave" onchange="cambiaBorde(this,'campo');">
+                            </fieldset>
+                            <div class="clear"></div>
+                            <input type="submit" value="Entrar" name="entrar" id="entrar">
+                        </form>
+                        <button id="registro" style="margin-top: 10px;">Registrarse</button>
+                    </section> <!-- /sobre mi -->
+
+            </main><!-- /principal -->
+
+            <div class="clear"></div>
+    <script>
+        let modal = document.getElementById("miModal");
+        let btn = document.getElementById("registro");
+        let span = document.getElementsByClassName("cerrar")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

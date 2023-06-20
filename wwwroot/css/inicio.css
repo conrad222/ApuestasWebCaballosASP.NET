@@ -8,11 +8,32 @@ body {
 	margin: 0;
 	padding: 0;
 	background-size: 100%;
-	font: 70%/160% "verdana", "sans-serif";
+	
 	color: #000;
 }
 
+main{
+	justify-content:center;
+	align-items:center;
+	text-align:center;
+}
 
+
+#contenido {
+	width: 100%;
+	margin: 0 5px;
+	height: 100%;
+	
+}
+.container{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+h3{
+	margin-top:40px;
+}
 a:hover {
 	color: red;
 }
@@ -20,6 +41,7 @@ a:hover {
 p {
 	margin: 1em 0;
 	padding: 0;
+	text-align:center;
 }
 
 .clear {
@@ -29,10 +51,9 @@ p {
 
 
 label {
-	width: 140px;
+	
 	display: block;
 	text-align: center;
-	margin-left: 10px;
 	margin-top: 10px;
 }
 
@@ -45,6 +66,7 @@ label {
 	border: 1px solid #888;
 	width: 25%;
 	height: 50%;
+	font: 70%/160% "verdana", "sans-serif";
 }
 
 .modal {
@@ -72,19 +94,21 @@ label {
 	text-align: center;
 }
 
-
+fieldset{
+	justify-content:center;
+	align-items:center;
+}
 
 #entrar {
 	display: flex;
-	padding: 5px 15px;
-	margin-left: 50px;
-	margin-top: 20px;
-	background: linear-gradient(0deg, #000, #464646);
-	color: #fff;
+	padding: 15px 55px;
+	margin-top: 0px;
+	margin-left: 30px;
+	background-color: #26df6a;
 	border-radius: 5px;
 	border: none;
+	color: #fff;
 	margin-bottom: 20px;
-
 }
 
 #entrar:hover {
@@ -93,15 +117,14 @@ label {
 
 #registro {
 	display: flex;
-	margin-left: 35px;
-	padding: 5px 15px;
+	margin-left: 30px;
+	padding: 15px 38px;
 	margin-top: 20px;
-	background: linear-gradient(0deg, #000, #464646);
+	background-color: #26df6a;
 	color: #fff;
 	margin-bottom: 5px;
 	border-radius: 5px;
 	border: none;
-
 }
 
 #registro:hover {
@@ -171,7 +194,7 @@ span.comentarios {
 
 #entrar,
 #borrar {
-	margin-top: 15px;
+	margin-top: 30px;
 }
 
 #contenido #secundario div {

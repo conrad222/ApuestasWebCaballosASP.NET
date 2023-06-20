@@ -5,7 +5,7 @@ namespace ApuestasWebCaballos.Models.DataAcces;
 
 public partial class Rol
 {
-    public int? IdRol { get; set; }
+    public int? Id { get; set; }
 
-    public string? Rol1 { get; set; }
+    public string? Name { get; set; }
 }

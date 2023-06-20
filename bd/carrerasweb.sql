@@ -70,14 +70,17 @@ INSERT INTO `jockey` (`id_jockey`, `numero`, `copas`, `color_equipo`) VALUES
 
 -- Volcando estructura para tabla carrerasweb.rol
 CREATE TABLE IF NOT EXISTS `rol` (
-  `id_rol` int(11) DEFAULT NULL,
-  `rol` varchar(50) DEFAULT NULL
+  `Id` int(11) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `CreatedAt` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `UpdatedAt` datetime(6) DEFAULT current_timestamp(6),
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla carrerasweb.rol: ~2 rows (aproximadamente)
-INSERT INTO `rol` (`id_rol`, `rol`) VALUES
-	(1, 'usuario'),
-	(2, 'administrador');
+INSERT INTO `rol` (`Id`, `Name`, `CreatedAt`, `UpdatedAt`) VALUES
+	(1, 'usuario', '2023-06-20 19:27:22.000000', '2023-06-20 19:27:23.000000'),
+	(2, 'administrador', '2023-06-20 19:27:33.425086', '2023-06-20 19:27:33.425086');
 
 -- Volcando estructura para tabla carrerasweb.trabajador
 CREATE TABLE IF NOT EXISTS `trabajador` (
@@ -94,17 +97,37 @@ INSERT INTO `trabajador` (`id_trabajador`, `nombre`, `apellido`, `caja_apuesta`)
 
 -- Volcando estructura para tabla carrerasweb.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  `contraseña` varchar(50) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL,
-  `dinero` double DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` longtext DEFAULT NULL,
+  `Email` longtext DEFAULT NULL,
+  `EmailVerifiedAt` datetime(6) DEFAULT NULL,
+  `Password` longtext DEFAULT NULL,
+  `Dinero` double DEFAULT NULL,
+  `RoleId` int(11) NOT NULL,
+  `RememberToken` longtext DEFAULT NULL,
+  `CreatedAt` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `UpdatedAt` datetime(6) DEFAULT current_timestamp(6),
+  PRIMARY KEY (`Id`),
+  KEY `FK_Users_rol_RoleId` (`RoleId`),
+  CONSTRAINT `FK_Users_rol_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `rol` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla carrerasweb.usuario: ~1 rows (aproximadamente)
-INSERT INTO `usuario` (`user_id`, `nombre`, `contraseña`, `correo`, `dinero`) VALUES
-	(1, 'Padrique', 'padre', 'padrique@gmail.com', 200);
+-- Volcando datos para la tabla carrerasweb.usuario: ~2 rows (aproximadamente)
+INSERT INTO `usuario` (`Id`, `Name`, `Email`, `EmailVerifiedAt`, `Password`, `Dinero`, `RoleId`, `RememberToken`, `CreatedAt`, `UpdatedAt`) VALUES
+	(1, 'Conrado', 'color@gmail.com', '2023-06-20 19:45:08.000000', 'color', 200, 1, NULL, '2023-06-20 19:45:24.000000', '2023-06-20 19:45:25.000000'),
+	(2, 'Jorge', 'jorge@gmail.com', '2023-06-20 19:48:04.000000', 'jorge', 100, 2, NULL, '2023-06-20 19:48:24.000000', '2023-06-20 19:48:25.000000');
+
+-- Volcando estructura para tabla carrerasweb.__efmigrationshistory
+CREATE TABLE IF NOT EXISTS `__efmigrationshistory` (
+  `MigrationId` varchar(150) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL,
+  PRIMARY KEY (`MigrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla carrerasweb.__efmigrationshistory: ~2 rows (aproximadamente)
+INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
+	('20230620165827_create_table_roles', '7.0.7'),
+	('20230620173034_create_table_users', '7.0.7');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

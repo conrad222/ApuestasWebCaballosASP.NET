@@ -119,12 +119,12 @@ public partial class CarreraswebContext : DbContext
                 .HasNoKey()
                 .ToTable("rol");
 
-            entity.Property(e => e.IdRol)
+            entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
-                .HasColumnName("id_rol");
-            entity.Property(e => e.Rol1)
+                .HasColumnName("Id");
+            entity.Property(e => e.Name)
                 .HasMaxLength(50)
-                .HasColumnName("rol");
+                .HasColumnName("Name");
         });
 
         modelBuilder.Entity<Trabajador>(entity =>
@@ -147,23 +147,23 @@ public partial class CarreraswebContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("usuario");
 
-            entity.Property(e => e.UserId)
+            entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
-                .HasColumnName("user_id");
-            entity.Property(e => e.Contraseña)
+                .HasColumnName("Id");
+            entity.Property(e => e.Password)
                 .HasMaxLength(50)
-                .HasColumnName("contraseña");
-            entity.Property(e => e.Correo)
+                .HasColumnName("Password");
+            entity.Property(e => e.Email)
                 .HasMaxLength(50)
-                .HasColumnName("correo");
-            entity.Property(e => e.Dinero).HasColumnName("dinero");
-            entity.Property(e => e.Nombre)
+                .HasColumnName("Email");
+            entity.Property(e => e.Dinero).HasColumnName("Dinero");
+            entity.Property(e => e.Name)
                 .HasMaxLength(50)
-                .HasColumnName("nombre");
+                .HasColumnName("Name");
         });
 
         OnModelCreatingPartial(modelBuilder);

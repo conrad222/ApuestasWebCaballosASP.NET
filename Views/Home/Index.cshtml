@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="./css/inicio.css" />
+    <script type="text/javascript" src="~/js/cssrefresh.js"></script>
     <script>
 
         function cambiaBorde(elemento, llamada) {
@@ -50,7 +51,7 @@
                 elemento.focus();
                 return false;
             }
-            // alert(location.search);
+            
         }
     </script>
 
@@ -63,18 +64,18 @@
                         <div class="contenido2">
                             <span class="cerrar">&times;</span>
                             <div id="formulario2">
-                                <form id="datos2" action="@Url.Action("Register", "UserController")" name="datos2" method="POST">
+                                <form id="datos2" action="@Url.Action("Privacy", "Home")" name="datos2" method="POST">
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" onchange="cambiaBorde(this,'campo');">
+                                    <input type="text" id="nombre" name="nombre" onchange="cambiaBorde(this,'campo');" required>
                                     <label for="correo">Correo</label>
-                                    <input type="email" id="correo2" name="correo2" onchange="cambiaBorde(this,'campo');">
+                                    <input type="email" id="correo2" name="correo2" onchange="cambiaBorde(this,'campo');" required>
                                     <label for="clave">Contraseña</label>
                                     <input type="password" name="clave2" id="clave2"
-                                           onchange="cambiaBorde(this,'campo');">
+                                       onchange="cambiaBorde(this,'campo');" required>
                                     <label for="dinero">Dinero</label>
-                                    <input type="number" id="dinero" name="dinero">
+                                    <input type="number" id="dinero" name="dinero" required>
                                     <div class="clear"></div>
-                                        <input type="submit" data-action="@Url.Action("Register", "UserController")" value="Darme de alta" name="envio" id="envio">
+                                        <input type="submit" value="Darme de alta" name="envio" id="envio">
                                 </form>
                             </div>
                         </div>

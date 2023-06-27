@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI;
+using System.Collections;
 using System.Web;
+
 
 namespace ApuestasWebCaballos.Controllers
 {
@@ -21,6 +23,7 @@ namespace ApuestasWebCaballos.Controllers
         // GET: UserController
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -41,6 +44,11 @@ namespace ApuestasWebCaballos.Controllers
                 Dinero = dinero
 
             };
+
+            if(usuario == null || correo == null || clave == null || dinero == 0)
+            {
+                ModelState.AddModelError("", "Pon algo en cada petición");
+            }
 
             db.Usuarios.Add(nuevoUsuario);
             db.SaveChanges();
@@ -71,6 +79,36 @@ namespace ApuestasWebCaballos.Controllers
             return View();
         }
 
+        //Lista de usuarios en la bd(List)
+        public ActionResult List(Usuario usuario)
+        {
+            var usuarios = db.Usuarios.ToList();
+            return View(usuarios);
+        }
+
+        public ActionResult List()
+        {
+            return View();
+        }
+
+        public ActionResult ArrayList(Usuario usuario)
+        {
+            ArrayList mensaje = new ArrayList
+            {
+                "Bienvenido",
+                "a ",
+                "las Carreras",
+                "Extremas"
+            };
+
+            return View(mensaje);
+        }
+
+        //Lista de usuarios en la bd(ArrayList)
+        public ActionResult ArrayList()
+        {
+            return View();
+        }
 
         // GET: UserController/Details/5
         public ActionResult Details(int id)

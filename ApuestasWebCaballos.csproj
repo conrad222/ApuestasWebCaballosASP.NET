@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.SessionState.SessionStateModule" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +20,12 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\Downloads\system.web.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

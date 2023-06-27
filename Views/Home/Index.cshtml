@@ -24,11 +24,6 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="./css/inicio.css" />
     <script>
-        function abreBuscador() {
-            var url = "https://www.google.es/search?q=";
-            url = url + document.form.busqueda.value;
-            window.open(url, '_blank');
-        }
 
         function cambiaBorde(elemento, llamada) {
             if (llamada == "validacion") {
@@ -40,13 +35,7 @@
         }
 
         function validaFormulario() {
-            // elemento = document.datos.nombre;
-            // if (elemento.value.length == 0) {
-            // 	alert("Tienes que escribir tu nombre");
-            // 	cambiaBorde(elemento, "validacion");
-            // 	elemento.focus();
-            // 	return false;
-            // }
+           
             elemento = document.datos.correo;
             if (elemento.value.length == 0) {
                 alert("Debes introducir una dirección de correo electrónico");
@@ -63,13 +52,10 @@
             }
             // alert(location.search);
         }
-        function quitarbuscador() {
-            document.getElementById("buscador").style.visibility = 'hidden';
-        }
     </script>
 
 </head>
-<body onload="quitarbuscador()">
+<body>
     <div id="contenido">
             <main>
                 <article>
@@ -77,7 +63,7 @@
                         <div class="contenido2">
                             <span class="cerrar">&times;</span>
                             <div id="formulario2">
-                                <form id="datos2" action="" name="datos2" method="GET">
+                                <form id="datos2" action="@Url.Action("Register", "UserController")" name="datos2" method="POST">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" id="nombre" name="nombre" onchange="cambiaBorde(this,'campo');">
                                     <label for="correo">Correo</label>
@@ -85,8 +71,10 @@
                                     <label for="clave">Contraseña</label>
                                     <input type="password" name="clave2" id="clave2"
                                            onchange="cambiaBorde(this,'campo');">
+                                    <label for="dinero">Dinero</label>
+                                    <input type="number" id="dinero" name="dinero">
                                     <div class="clear"></div>
-                                    <input type="submit" value="Darme de alta" name="envio" id="envio">
+                                        <input type="submit" data-action="@Url.Action("Register", "UserController")" value="Darme de alta" name="envio" id="envio">
                                 </form>
                             </div>
                         </div>

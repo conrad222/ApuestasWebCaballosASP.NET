@@ -1,6 +1,8 @@
-﻿using AspNetCore;
+﻿using ApuestasWebCaballos.Models.DataAcces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI;
+using System.Web;
 
 namespace ApuestasWebCaballos.Controllers
 {

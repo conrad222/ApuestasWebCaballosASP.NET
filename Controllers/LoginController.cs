@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using ApuestasWebCaballos.Models.DataAcces;
+using Microsoft.AspNetCore.Http;
+using MySqlX.XDevAPI;
+using System.Web;
 namespace ApuestasWebCaballos.Controllers
 {
     public class LoginController : Controller

@@ -1,12 +1,22 @@
 ﻿using ApuestasWebCaballos.Models.DataAcces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI;
+using System.Web;
 
 namespace ApuestasWebCaballos.Controllers
 {
     public class UserController : Controller
     {
         private readonly CarreraswebContext db = new CarreraswebContext();
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public UserController(CarreraswebContext context, IHttpContextAccessor httpContextAccessor)
+        {
+            db = context;
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         // GET: UserController
         public ActionResult Index()
@@ -21,17 +31,21 @@ namespace ApuestasWebCaballos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Usuario usuario)
+        public ActionResult Register(string usuario, string correo, string clave, double dinero)
         {
-            if (ModelState.IsValid)
+            Usuario nuevoUsuario = new Usuario
             {
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
+                Name = usuario,
+                Email = correo,
+                Password = clave,
+                Dinero = dinero
 
-                return RedirectToAction("Login");
-            }
+            };
 
-            return View(usuario);
+            db.Usuarios.Add(nuevoUsuario);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Login()
@@ -47,9 +61,9 @@ namespace ApuestasWebCaballos.Controllers
 
             if (usuario != null)
             {
-                Session["usuario_id"] = usuario.Id;
+                _httpContextAccessor.HttpContext.Session.SetInt32("usuario_id", usuario.Id);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Privacy");
             }
 
             ModelState.AddModelError("", "Correo o contraseña incorrectos");

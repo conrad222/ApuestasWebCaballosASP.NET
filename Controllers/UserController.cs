@@ -71,12 +71,15 @@ namespace ApuestasWebCaballos.Controllers
             {
                 _httpContextAccessor.HttpContext.Session.SetInt32("usuario_id", usuario.Id);
 
-                return RedirectToAction("Index", "Privacy");
+                string nombreUsuario = usuario.Name;
+
+
+                return View(nombreUsuario);
             }
 
             ModelState.AddModelError("", "Correo o contraseña incorrectos");
 
-            return View();
+            return RedirectToAction("Privacy", "Home");
         }
 
         //Lista de usuarios en la bd(List)

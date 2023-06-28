@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model ApuestasWebCaballos.Models.DataAcces.Usuario;
 
 @*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -85,12 +86,12 @@
                     <!-- Inicio Sesión -->
                     <h3>Inicio Sesión</h3>
                     <section id="sobremi" name="sessionState" type="System.Web.Configuration.SessionStateSection" >
-                        <form id="datos" action="opiniones.html" onsubmit="return validaFormulario();" name="datos" method="GET">
+                    <form id="datos" action="@Url.Action("Index", "Home")" onsubmit="return validaFormulario();" name="datos" method="GET">
                             <fieldset>
                                 <label for="correo">Correo</label>
-                                <input type="email" id="correo" name="correo" onchange="cambiaBorde(this,'campo');">
+                                <input type="email" id="correo" name="correo" onchange="cambiaBorde(this,'campo');" required>
                                 <label for="clave">Contraseña</label>
-                                <input type="password" name="clave" id="clave" onchange="cambiaBorde(this,'campo');">
+                                <input type="password" name="clave" id="clave" onchange="cambiaBorde(this,'campo');" required>
                             </fieldset>
                             <div class="clear"></div>
                             <input type="submit" value="Entrar" name="entrar" id="entrar">

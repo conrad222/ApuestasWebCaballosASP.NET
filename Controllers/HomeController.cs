@@ -12,9 +12,12 @@ namespace ApuestasWebCaballos.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly CarreraswebContext _context;
+
+        public HomeController(ILogger<HomeController> logger, CarreraswebContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
